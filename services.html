@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="梵芯数据的服务项目 - 数据分析、数据可视化、数据存储、技术咨询">
+    <title>服务项目 - 梵芯数据 AllCoreData</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600;700&family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        .page-header {
+            background: var(--gradient);
+            padding: 10rem 0 6rem;
+            color: var(--white);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .page-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            opacity: 0.5;
+        }
+        
+        .page-header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .page-header p {
+            font-size: 1.1rem;
+            opacity: 0.95;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .services-section {
+            padding: 6rem 0;
+        }
+        
+        .service-detail {
+            padding: 5rem 0;
+            border-bottom: 1px solid rgba(0, 102, 255, 0.1);
+        }
+        
+        .service-detail:last-child {
+            border-bottom: none;
+        }
+        
+        .service-detail-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+        
+        .service-detail:nth-child(even) .service-detail-grid {
+            direction: rtl;
+        }
+        
+        .service-detail:nth-child(even) .service-detail-grid > * {
+            direction: ltr;
+        }
+        
+        .service-detail-content h3 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .service-detail-content p {
+            font-size: 1.1rem;
+            color: var(--text-gray);
+            line-height: 1.9;
+            margin-bottom: 2rem;
+        }
+        
+        .service-features {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+        
+        .service-feature {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            padding: 1rem;
+            background: var(--bg-light);
+            border-radius: var(--radius-sm);
+            transition: all var(--transition-fast);
+        }
+        
+        .service-feature:hover {
+            background: rgba(0, 102, 255, 0.1);
+            transform: translateX(5px);
+        }
+        
+        .service-feature-icon {
+            width: 24px;
+            height: 24px;
+            flex-shrink: 0;
+        }
+        
+        .service-feature-icon svg {
+            width: 100%;
+            height: 100%;
+            stroke: var(--primary);
+            fill: none;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+        
+        .service-feature span {
+            font-weight: 500;
+            color: var(--text-dark);
+        }
+        
+        .service-detail-visual {
+            height: 350px;
+            background: var(--gradient);
+            border-radius: var(--radius-lg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .service-detail-visual svg {
+            width: 100px;
+            height: 100px;
+            stroke: white;
+            fill: none;
+            stroke-width: 1.5;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+        
+        .service-detail-visual::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: pulse 3s ease-in-out infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.1); opacity: 0.8; }
+        }
+        
+        .process-section {
+            background: var(--bg-light);
+            padding: 6rem 0;
+        }
+        
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+            position: relative;
+        }
+        
+        .process-steps::before {
+            content: '';
+            position: absolute;
+            top: 50px;
+            left: 10%;
+            right: 10%;
+            height: 4px;
+            background: var(--gradient);
+            z-index: 0;
+        }
+        
+        .process-step {
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .process-icon {
+            width: 100px;
+            height: 100px;
+            background: var(--white);
+            border: 4px solid var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            transition: all var(--transition-base);
+        }
+        
+        .process-icon svg {
+            width: 40px;
+            height: 40px;
+            stroke: var(--primary);
+            fill: none;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+        
+        .process-step:hover .process-icon {
+            background: var(--gradient);
+            transform: scale(1.1);
+        }
+        
+        .process-step:hover .process-icon svg {
+            stroke: white;
+        }
+        
+        .process-step h4 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--text-dark);
+        }
+        
+        .process-step p {
+            font-size: 0.95rem;
+            color: var(--text-gray);
+        }
+        
+        .advantages-section {
+            padding: 6rem 0;
+        }
+        
+        .advantages-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .advantage-card {
+            text-align: center;
+            padding: 3rem 2rem;
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-sm);
+            border: 2px solid transparent;
+            transition: all var(--transition-base);
+        }
+        
+        .advantage-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .advantage-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 1.5rem;
+        }
+        
+        .advantage-icon svg {
+            width: 100%;
+            height: 100%;
+            stroke: var(--primary);
+            fill: none;
+            stroke-width: 1.5;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+        
+        .advantage-card h4 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+        }
+        
+        .advantage-card p {
+            color: var(--text-gray);
+            line-height: 1.8;
+        }
+        
+        @media (max-width: 1024px) {
+            .service-detail-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .service-detail:nth-child(even) .service-detail-grid {
+                direction: ltr;
+            }
+            
+            .service-features {
+                grid-template-columns: 1fr;
+            }
+            
+            .process-steps {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+            
+            .process-steps::before {
+                display: none;
+            }
+            
+            .advantages-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .page-header h1 {
+                font-size: 2.5rem;
+            }
+            
+            .service-detail-content h3 {
+                font-size: 2rem;
+            }
+            
+            .advantages-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar scrolled">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <img src="logo.png" alt="梵芯数据" style="height: 40px; margin-right: 10px; vertical-align: middle;">
+                <span>梵芯数据</span>
+            </a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">首页</a></li>
+                <li><a href="about.html">关于我们</a></li>
+                <li><a href="services.html">服务</a></li>
+                <li><a href="solutions.html">解决方案</a></li>
+                <li><a href="domains.html">域名出售</a></li>
+                <li><a href="contact.html">联系我们</a></li>
+            </ul>
+            <div class="menu-toggle" id="menuToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <header class="page-header">
+        <div class="container">
+            <h1>服务项目</h1>
+            <p>全方位的数据解决方案，助力企业数字化转型</p>
+        </div>
+    </header>
+
+    <section class="services-section">
+        <div class="container">
+            <div class="service-detail reveal">
+                <div class="service-detail-grid">
+                    <div class="service-detail-content">
+                        <h3>数据分析服务</h3>
+                        <p>运用先进的机器学习算法和统计学方法，从海量数据中挖掘商业价值。我们提供从数据采集、清洗、分析到洞察输出的全流程服务，帮助企业做出数据驱动的决策。</p>
+                        <div class="service-features">
+                            <div class="service-feature">
+                                <div class="service-feature-icon">
+                                    <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="9" rx="1"/><rect x="14" y="3" width="7" height="5" rx="1"/><rect x="14" y="12" width="7" height="9" rx="1"/><rect x="3" y="16" width="7" height="5" rx="1"/></svg>
+                                </div>
+                                <span>描述性分析</span>
+                            </div>
+                            <div class="service-feature">
+                                <div class="service-feature-icon">
+                                    <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 16a4 4 0 0 1-4-4 4 4 0 0 1 4-4"/><path d="M18 12h-2"/><path d="M8 12H6"/></svg>
+                                </div>
+                                <span>预测性分析</span>
+                            </div>
+                            <div class="service-feature">
+                                <div class="service-feature-icon">
+                                    <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                                </div>
+                                <span>用户行为分析</span>
+                            </div>
+                            <div class="service-feature">
+                                <div class="service-feature-icon">
+                                    <svg viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+                                </div>
+                                <span>趋势预测</span>
+                            </div>
+                            <div class="service-feature">
+                                <div class="service-feature-icon">
+                                    <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                                </div>
+                                <span>异常检测</span>
+                            </div>
+                            <div class="service-feature">
+                                <div class="service-feature-icon">
+                                    <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+                                </div>
+                                <span>AI模型开发</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="service-detail-visual">
+                        <svg viewBox="0 0 24 24">
+                            <line x1="18" y1="20" x2="18" y2="10"/>
+                            <line x1="12" y1="20" x2="12" y2="4"/>
+                            <line x1="6" y1="20" x2="6" y2="14"/>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+            <div class="service-detail reveal">
+                <div class="service-detail-grid">
+                    <div class="service-detail-content">
+                        <h3>数据可视化服务</h3>
+                        <p>通过直观的图表和交互式仪表盘，让复杂数据变得易于理解和使用。我们帮助企业构建数据可视化体系，从简单的报表到复杂的交互式大屏，全方位展示数据价值。</p>
+                        <div class="service-features">
+                            <div class="service-feature">
+                                <div class="service-feature-icon">
+                                    <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+                                </div>
+                                <span>数据报表</span>
+                            </div>
+                            <div class="service-feature">
+                                <div class="service-feature-icon">
+                                    <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+                                </div>
+                                <span>管理驾驶舱</span>
+                            </div>
+                            <div class="service-feature">
+                                <div class="service-feature-icon">
+                                    <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg>
+                                </div>
+                                <span>地理信息可视化</span>
+                            </div>
+                            <div class="service-feature">
+                                <div class="service-feature-icon">
+                                    <svg viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                                </div>
+                                <span>实时监控大屏</span>
+                            </div>
+                            <div class="service-feature">
+                                <div class="service-feature-icon">
+                                    <svg viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+                                </div>
+                                <span>移动端适配</span>
+                            </div>
+                            <div class="service-feature">
+                                <div class="service-feature-icon">
+                                    <svg viewBox="0 0 24 24"><polyline points="17 1 21 5 17 9"/><line x1="3" y1="11" x2="9" y2="11"/><line x1="3" y1="15" x2="15" y2="15"/><line x1="3" y1="19" x2="19" y2="19"/></svg>
+                                </div>
+                                <span>数据联动</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="service-detail-visual">
+                        <svg viewBox="0 0 24 24">
+                            <circle cx="12" cy="12" r="10"/>
+                            <circle cx="12" cy="12" r="6"/>
+                            <circle cx="12" cy="12" r="2"/>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+            <div class="service-detail reveal">
+                <div class="service-detail-grid">
+                    <div class="service-detail-content">
+                        <h3>数据存储服务</h3>
+                        <p>构建安全、高效、可扩展的数据存储架构。我们帮助企业设计并实施数据仓库、数据湖等存储解决方案，保障企业数据的完整性、安全性和可用性。</p>
+                        <div class="service-features">
+                            <div class="service-feature">
+                                <div class="service-feature-icon">
+                                    <svg viewBox="0 0 24 24"><rect x="4" y="2" width="16" height="20" rx="2" ry="2"/><path d="M9 10h.01"/><path d="M15 10h.01"/><line x1="8" y1="14" x2="16" y2="14"/></svg>
+                                </div>
+                                <span>数据仓库设计</span>
+                            </div>
+                            <div class="service-feature">
+                                <div class="service-feature-icon">
+                                    <svg viewBox="0 0 24 24"><path d="M2 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4-1.79-4-4-4zm20-2c-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4-1.79-4-4-4zm0-2c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4z"/></svg>
+                                </div>
+                                <span>数据湖构建</span>
+                            </div>
+                            <div class="service-feature">
+                                <div class="service-feature-icon">
+                                    <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
+                                </div>
+                                <span>数据安全</span>
+                            </div>
+                            <div class="service-feature">
+                                <div class="service-feature-icon">
+                                    <svg viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                                </div>
+                                <span>性能优化</span>
+                            </div>
+                            <div class="service-feature">
+                                <div class="service-feature-icon">
+                                    <svg viewBox="0 0 24 24"><polyline points="17 1 21 5 17 9"/><line x1="3" y1="11" x2="9" y2="11"/><line x1="3" y1="15" x2="15" y2="15"/><line x1="3" y1="19" x2="19" y2="19"/></svg>
+                                </div>
+                                <span>数据同步</span>
+                            </div>
+                            <div class="service-feature">
+                                <div class="service-feature-icon">
+                                    <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="2" ry="2"/><line x1="8" y1="18" x2="8" y2="10"/><line x1="12" y1="18" x2="12" y2="6"/><line x1="16" y1="18" x2="16" y2="14"/></svg>
+                                </div>
+                                <span>备份恢复</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="service-detail-visual">
+                        <svg viewBox="0 0 24 24">
+                            <rect x="2" y="2" width="20" height="20" rx="2" ry="2"/>
+                            <line x1="8" y1="18" x2="8" y2="10"/>
+                            <line x1="12" y1="18" x2="12" y2="6"/>
+                            <line x1="16" y1="18" x2="16" y2="14"/>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+            <div class="service-detail reveal">
+                <div class="service-detail-grid">
+                    <div class="service-detail-content">
+                        <h3>技术咨询服务</h3>
+                        <p>提供专业的数据技术咨询服务，帮助企业制定数据战略、评估技术方案、培养数据团队。我们拥有丰富的行业经验，能够为企业提供切实可行的解决方案。</p>
+                        <div class="service-features">
+                            <div class="service-feature">
+                                <div class="service-feature-icon">
+                                    <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="9" y1="9" x2="15" y2="9"/><line x1="9" y1="15" x2="15" y2="15"/></svg>
+                                </div>
+                                <span>数据战略规划</span>
+                            </div>
+                            <div class="service-feature">
+                                <div class="service-feature-icon">
+                                    <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg>
+                                </div>
+                                <span>技术方案评估</span>
+                            </div>
+                            <div class="service-feature">
+                                <div class="service-feature-icon">
+                                    <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                                </div>
+                                <span>团队培训</span>
+                            </div>
+                            <div class="service-feature">
+                                <div class="service-feature-icon">
+                                    <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
+                                </div>
+                                <span>架构设计</span>
+                            </div>
+                            <div class="service-feature">
+                                <div class="service-feature-icon">
+                                    <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+                                </div>
+                                <span>项目监理</span>
+                            </div>
+                            <div class="service-feature">
+                                <div class="service-feature-icon">
+                                    <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+                                </div>
+                                <span>最佳实践</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="service-detail-visual">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="process-section">
+        <div class="container">
+            <h2 class="section-title reveal">服务流程</h2>
+            <p class="section-subtitle reveal">标准化的服务流程，确保项目高质量交付</p>
+            <div class="process-steps">
+                <div class="process-step reveal">
+                    <div class="process-icon">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                            <circle cx="9" cy="7" r="4"/>
+                            <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                            <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                        </svg>
+                    </div>
+                    <h4>需求沟通</h4>
+                    <p>深入了解业务需求</p>
+                </div>
+                <div class="process-step reveal">
+                    <div class="process-icon">
+                        <svg viewBox="0 0 24 24">
+                            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                            <line x1="9" y1="9" x2="15" y2="9"/>
+                            <line x1="9" y1="15" x2="15" y2="15"/>
+                        </svg>
+                    </div>
+                    <h4>方案设计</h4>
+                    <p>制定详细技术方案</p>
+                </div>
+                <div class="process-step reveal">
+                    <div class="process-icon">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
+                        </svg>
+                    </div>
+                    <h4>开发实施</h4>
+                    <p>高效执行项目开发</p>
+                </div>
+                <div class="process-step reveal">
+                    <div class="process-icon">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>
+                        </svg>
+                    </div>
+                    <h4>测试验收</h4>
+                    <p>严格把控质量标准</p>
+                </div>
+                <div class="process-step reveal">
+                    <div class="process-icon">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/>
+                        </svg>
+                    </div>
+                    <h4>交付运维</h4>
+                    <p>持续优化和支持</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="advantages-section">
+        <div class="container">
+            <h2 class="section-title reveal">为什么选择我们</h2>
+            <p class="section-subtitle reveal">专业、高效、可靠的数据服务伙伴</p>
+            <div class="advantages-grid">
+                <div class="advantage-card reveal">
+                    <div class="advantage-icon">
+                        <svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                    </div>
+                    <h4>专业团队</h4>
+                    <p>汇聚数据科学家、工程师和行业专家，提供全方位技术支持</p>
+                </div>
+                <div class="advantage-card reveal">
+                    <div class="advantage-icon">
+                        <svg viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                    </div>
+                    <h4>高效交付</h4>
+                    <p>标准化的服务流程和完善的项目管理，确保按时高质量交付</p>
+                </div>
+                <div class="advantage-card reveal">
+                    <div class="advantage-icon">
+                        <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
+                    </div>
+                    <h4>安全可靠</h4>
+                    <p>严格的数据安全体系，保障企业数据资产安全</p>
+                </div>
+                <div class="advantage-card reveal">
+                    <div class="advantage-icon">
+                        <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                    </div>
+                    <h4>持续支持</h4>
+                    <p>7×24小时技术支持，定期回访和优化建议</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta section">
+        <div class="container">
+            <h2 class="reveal">开始您的数据之旅</h2>
+            <p class="reveal">联系我们，获取专属解决方案</p>
+            <a href="contact.html" class="btn btn-white reveal">立即咨询</a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <h3>梵芯数据</h3>
+                    <p>专业的数据解决方案提供商，致力于帮助企业释放数据价值，实现数字化转型。</p>
+                </div>
+                <nav class="footer-links" aria-label="快速链接">
+                    <h4>快速链接</h4>
+                    <ul>
+                        <li><a href="about.html">关于我们</a></li>
+                        <li><a href="services.html">服务项目</a></li>
+                        <li><a href="solutions.html">解决方案</a></li>
+                        <li><a href="domains.html">域名出售</a></li>
+                        <li><a href="contact.html">联系我们</a></li>
+                    </ul>
+                </nav>
+                <div class="footer-links">
+                    <h4>服务范围</h4>
+                    <ul>
+                        <li><a href="services.html">数据分析</a></li>
+                        <li><a href="services.html">数据可视化</a></li>
+                        <li><a href="services.html">数据存储</a></li>
+                        <li><a href="services.html">技术咨询</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>联系我们</h4>
+                    <ul>
+                        <li>电话：<a href="tel:19193836557">19193836557</a></li>
+                        <li>邮箱：<a href="mailto:hanbing441@allcoredata.cn">hanbing441@allcoredata.cn</a></li>
+                        <li>地址：甘肃省兰州市</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 梵芯数据 ALL CORE DATA</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

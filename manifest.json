@@ -1,0 +1,27 @@
+{
+  "name": "梵芯数据 AllCoreData",
+  "short_name": "梵芯数据",
+  "description": "专业的数据处理和分析解决方案提供商，帮助企业释放数据价值",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "background_color": "#0070F3",
+  "theme_color": "#0070F3",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/logo.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/logo.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["business", "productivity"],
+  "lang": "zh-CN",
+  "scope": "/"
+}
